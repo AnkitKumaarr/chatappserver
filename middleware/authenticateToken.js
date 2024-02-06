@@ -4,7 +4,6 @@ const authenticateToken = (req, res, next) => {
   // check if req.header authorization exist
   const authHeader = req.headers.authorization || req.headers.Authorization
   const token = authHeader?.split(' ')[1]
-  console.log("Autc", authHeader)
 
   if (!token) return res.status(401).json({ message: 'Unauthorized' })
 

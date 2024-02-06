@@ -9,12 +9,26 @@ const { initSocket } = require("./socket/index");
 const app = express();
 require("dotenv").config();
 
-const corsOptions = {
-  origin: process.env.CLIENT_URL,
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: process.env.CLIENT_URL,
+//   credentials: true,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "https://chatt-ap.netlify.app");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  if (req.method === "OPTIONS") {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SIGNATURE));
