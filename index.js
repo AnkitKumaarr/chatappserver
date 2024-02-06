@@ -9,6 +9,9 @@ const { initSocket } = require("./socket/index");
 const app = express();
 require("dotenv").config();
 
+console.log("Ankit--->",process.env.CLIENT_URL )
+console.log("Prashant--->",process.env.MONGO_URI )
+
 const corsOptions = {
   origin: process.env.CLIENT_URL,
   credentials: true,
@@ -29,6 +32,7 @@ app.use(function (req, res, next) {
     next();
   }
 });
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SIGNATURE));
