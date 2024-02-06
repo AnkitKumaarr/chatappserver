@@ -9,10 +9,10 @@ const { initSocket } = require("./socket/index");
 const app = express();
 require("dotenv").config();
 
-// const corsOptions = {
-//   origin: process.env.CLIENT_URL,
-//   credentials: true,
-// };
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+};
 
 // app.use(cors(corsOptions));
 app.use(function (req, res, next) {
