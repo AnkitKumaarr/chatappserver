@@ -17,24 +17,14 @@ console.log("Prashant--->", process.env.MONGO_URI);
 //   credentials: true,
 // };
 
-var whitelist = [
-  "https://chat-app-fjmm.onrender.com",
-  "https://chat-app-fjmm.onrender.com/login",
-  "https://chat-app-fjmm.onrender.com/signup",
-];
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//   next();
+// });
 
-var corsOptions = {
-  origin: function (origin, callback) {
-    console.log("Origin--->", origin)
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 // app.use(function (req, res, next) {
 //   res.setHeader("Access-Control-Allow-Origin", "https://chatt-ap.netlify.app");
@@ -72,6 +62,6 @@ const server = app.listen(process.env.PORT, () => {
 });
 
 // socket.io
-initSocket(server, corsOptions);
+initSocket(server);
 
 module.exports = app;
