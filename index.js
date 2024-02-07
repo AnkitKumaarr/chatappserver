@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/data", (req, res)=>{
-  res.json({ message: "This is Ankit" });
+  res.send(200).json("This is Ankit" );
 })
 
 mongoose
