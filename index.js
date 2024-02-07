@@ -45,6 +45,10 @@ app.get("/", (req, res) => {
   res.send("Hi there!");
 });
 
+app.get("/data", (req, res)=>{
+  res.send("This is Ankit")
+})
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("DB connection Success"))
