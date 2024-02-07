@@ -9,12 +9,28 @@ const { initSocket } = require("./socket/index");
 const app = express();
 require("dotenv").config();
 
-console.log("Ankit--->",process.env.CLIENT_URL )
-console.log("Prashant--->",process.env.MONGO_URI )
+console.log("Ankit--->", process.env.CLIENT_URL);
+console.log("Prashant--->", process.env.MONGO_URI);
 
-const corsOptions = {
-  origin: process.env.CLIENT_URL,
-  credentials: true,
+// const corsOptions = {
+//   origin: process.env.CLIENT_URL,
+//   credentials: true,
+// };
+
+var whitelist = [
+  "https://chat-app-fjmm.onrender.com",
+  "https://chat-app-fjmm.onrender.com/login",
+  "https://chat-app-fjmm.onrender.com/signup",
+];
+
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
 };
 
 app.use(cors(corsOptions));
