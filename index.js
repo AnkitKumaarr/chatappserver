@@ -25,6 +25,7 @@ var whitelist = [
 
 var corsOptions = {
   origin: function (origin, callback) {
+    console.log("Origin--->", origin)
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -34,6 +35,7 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
 // app.use(function (req, res, next) {
 //   res.setHeader("Access-Control-Allow-Origin", "https://chatt-ap.netlify.app");
 //   res.setHeader(
