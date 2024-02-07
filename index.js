@@ -11,8 +11,9 @@ const corsOptions = {
   credentials: true,
 };
 
-app.use(cors(corsOptions));
+
 const app = express();
+app.use(cors(corsOptions));
 require("dotenv").config();
 
 console.log("Ankit--->", process.env.CLIENT_URL);
