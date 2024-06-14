@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
+require("dotenv").config();
 const { initSocket } = require("./socket/index");
 
 const corsOptions = {
@@ -14,10 +15,8 @@ const corsOptions = {
 
 const app = express();
 app.use(cors(corsOptions));
-require("dotenv").config();
 
-console.log("Ankit--->", process.env.CLIENT_URL);
-console.log("Prashant--->", process.env.MONGO_URI);
+
 
 // app.use(function (req, res, next) {
 //   res.setHeader("Access-Control-Allow-Origin", "https://chatt-ap.netlify.app");
@@ -45,9 +44,9 @@ app.get("/", (req, res) => {
   res.send("Hi there!");
 });
 
-app.get("/data", (req, res)=>{
-  res.send(200).json("This is Ankit" );
-})
+app.get("/data", (req, res) => {
+  res.status(200).json({ message: "This is Ankit" });
+});
 
 mongoose
   .connect(process.env.MONGO_URI)
